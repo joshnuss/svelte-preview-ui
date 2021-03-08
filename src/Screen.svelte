@@ -19,7 +19,7 @@
 
   <div class="bar {barClass}">
     <div class="title {titleClass}">{#if title}{title}{/if}</div>
-	</div>
+  </div>
 
   <div class="content {contentClass}">
     <slot/>
@@ -27,25 +27,42 @@
 </section>
 
 <style>
+  @media (prefers-color-scheme: light) {
+    :root {
+      --screen-border-color: #ccc;
+      --screen-background-color: white;
+      --screen-shadow-color: #ccc;
+      --screen-text-color: #222;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --screen-border-color: #ccc;
+      --screen-background-color: #222;
+      --screen-shadow-color: #ccc;
+      --screen-text-color: white;
+    }
+  }
   .screen {
     font-family: sans-serif;
-		font-size: 1.2rem;
-    border: solid 1px var(--border-color);
-		padding: 1rem;
-		border-radius: 0.5rem;
-    background: var(--background-color);
-		box-shadow: 2px 2px var(--shadow-color);
-    color: var(--text-color);
+    font-size: 1.2rem;
+    border: solid 1px var(--screen-border-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: var(--screen-background-color);
+    box-shadow: 2px 2px var(--screen-shadow-color);
+    color: var(--screen-text-color);
     position: relative;
-	}
+  }
 
-	.screen .bar {
-		margin-bottom: 1rem;
+  .screen .bar {
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     place-items: center;
     align-items: center;
-	}
+  }
 
   .buttons {
     position: absolute;
@@ -53,6 +70,6 @@
 
   .title {
     font-size: 0.8rem;
-    color: var(--text-color);
+    color: var(--screen-text-color);
   }
 </style>
