@@ -1,11 +1,18 @@
 <script>
+  import { fly } from 'svelte/transition'
+  import { backInOut } from 'svelte/easing'
+
   let classes = ''
 
   export let title = null
   export let tabs = []
   export let activeTab = tabs[0]
+  export let drawer = false
+  export let drawerTitle = ''
   export { classes as class }
-  export let barClass = '', titleClass = '', contentClass = ''
+  export let barClass = '', titleClass = '', contentClass = '', drawerClass = ''
+
+  let drawerHeight
 </script>
 
 <section class="screen {classes}">
@@ -37,6 +44,18 @@
   <div class="content {contentClass}">
     <slot {activeTab}/>
   </div>
+
+  {#if drawer}
+    <div class="drawer {drawerClass}" bind:clientHeight={drawerHeight} transition:fly={{y: drawerHeight, easing: backInOut}}>
+      {#if drawerTitle}
+        <div class="drawer-title">
+          {drawerTitle}
+        </div>
+      {/if}
+
+      <slot name="drawer"/>
+    </div>
+  {/if}
 </section>
 
 <style>
@@ -66,6 +85,7 @@
     box-shadow: 2px 2px var(--screen-shadow-color);
     color: var(--screen-text-color);
     position: relative;
+    overflow: hidden;
   }
 
   .screen .bar {
@@ -112,5 +132,20 @@
 
   .tabs button:hover, .tabs button.active  {
     background: var(--screen-shadow-color);
+  }
+
+  .drawer {
+    position: absolute;
+    bottom: 0px;
+    background: var(--screen-background-color);
+    border-top: solid 1px var(--screen-border-color);
+    font-size: 0.9rem;
+    width: 100%;
+    padding: 0.2rem;
+  }
+  .drawer .drawer-title {
+    font-weight: 500;
+    text-align: left;
+    font-size: 0.9rem;
   }
 </style>
