@@ -2,6 +2,8 @@
   let classes = ''
 
   export let title = null
+  export let tabs = []
+  export let activeTab = tabs[0]
   export { classes as class }
   export let barClass = '', titleClass = '', contentClass = ''
 </script>
@@ -18,11 +20,22 @@
   </div>
 
   <div class="bar {barClass}">
-    <div class="title {titleClass}">{#if title}{title}{/if}</div>
+    {#if tabs.length > 0 }
+      <nav class="tabs">
+        <span class="spacer">&nbsp;</span>
+
+        {#each tabs as tab}
+          <button class:active={activeTab == tab} on:click={() => activeTab = tab}>{tab}</button>
+        {/each}
+
+      </nav>
+    {:else}
+      <div class="title {titleClass}">{#if title}{title}{/if}</div>
+    {/if}
   </div>
 
   <div class="content {contentClass}">
-    <slot/>
+    <slot {activeTab}/>
   </div>
 </section>
 
@@ -48,7 +61,6 @@
     font-family: sans-serif;
     font-size: 1.2rem;
     border: solid 1px var(--screen-border-color);
-    padding: 1rem;
     border-radius: 0.5rem;
     background: var(--screen-background-color);
     box-shadow: 2px 2px var(--screen-shadow-color);
@@ -58,18 +70,47 @@
 
   .screen .bar {
     margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-    place-items: center;
-    align-items: center;
   }
 
   .buttons {
     position: absolute;
+    padding: 0.5rem 0.5rem;
   }
 
   .title {
     font-size: 0.8rem;
     color: var(--screen-text-color);
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: flex-start;
+    place-items: center;
+    border-bottom: solid 1px var(--screen-border-color);
+  }
+
+  .tabs .spacer {
+    min-width: 70px !important;
+    border-right: solid 1px var(--screen-border-color);
+  }
+
+  .tabs button, .tabs .spacer {
+    min-height: 32px;
+    min-width: 80px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    border-right: solid 1px var(--screen-border-color);
+    font-size: 0.9rem;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .tabs button:hover, .tabs button.active  {
+    background: var(--screen-shadow-color);
   }
 </style>
