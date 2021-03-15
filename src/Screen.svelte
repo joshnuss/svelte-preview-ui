@@ -65,8 +65,9 @@
     :root {
       --screen-border-color: #ccc;
       --screen-background-color: white;
-      --screen-shadow-color: #ccc;
+      --screen-shadow-color: #ddd;
       --screen-text-color: #222;
+      --screen-highlight-color: turquoise;
     }
   }
 
@@ -76,6 +77,7 @@
       --screen-background-color: #222;
       --screen-shadow-color: #ccc;
       --screen-text-color: white;
+      --screen-highlight-color: turquoise;
     }
   }
   .screen {
@@ -133,7 +135,7 @@
   }
 
   .tabs button:hover, .tabs button.active  {
-    background: var(--screen-shadow-color);
+    border-bottom: solid 1px var(--screen-highlight-color);
   }
 
   .drawer {
