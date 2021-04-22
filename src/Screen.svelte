@@ -10,21 +10,25 @@
   export let drawer = false
   export let drawerTitle = ''
   export { classes as class }
+  export let style = ''
   export let barClass = '', titleClass = '', contentClass = '', drawerClass = ''
+  export let controls = true
 
   let drawerHeight
 </script>
 
-<section class="screen {classes}" on:click|stopPropagation>
-  <div class="buttons">
-    <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14">
-      <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
-        <circle cx="6" cy="7" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"/>
-        <circle cx="25" cy="7" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"/>
-        <circle cx="44" cy="7" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"/>
-      </g>
-    </svg>
-  </div>
+<section class="screen {classes}" {style} on:click|stopPropagation>
+  {#if controls}
+    <div class="buttons">
+      <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14">
+        <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+          <circle cx="6" cy="7" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"/>
+          <circle cx="25" cy="7" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"/>
+          <circle cx="44" cy="7" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"/>
+        </g>
+      </svg>
+    </div>
+  {/if}
 
   <div class="bar {barClass}">
     <slot name="bar">
