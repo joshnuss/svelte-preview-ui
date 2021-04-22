@@ -15,7 +15,7 @@
   let drawerHeight
 </script>
 
-<section class="screen {classes}" on:click>
+<section class="screen {classes}" on:click|stopPropagation>
   <div class="buttons">
     <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14">
       <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
