@@ -15,7 +15,7 @@
   let drawerHeight
 </script>
 
-<section class="screen {classes}">
+<section class="screen {classes}" on:click>
   <div class="buttons">
     <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14">
       <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
@@ -33,7 +33,7 @@
           <span class="spacer">&nbsp;</span>
 
           {#each tabs as tab}
-            <button class:active={activeTab == tab} on:click={() => activeTab = tab}>{tab}</button>
+            <button class:active={activeTab == tab} on:click|preventDefault={() => activeTab = tab}>{tab}</button>
           {/each}
 
         </nav>
