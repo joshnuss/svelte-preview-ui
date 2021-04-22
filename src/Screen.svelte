@@ -97,7 +97,11 @@
   }
 
   .screen .bar {
-    margin-bottom: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .screen .content {
+    padding: 0 3px;
   }
 
   .buttons {
